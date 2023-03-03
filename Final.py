@@ -4,15 +4,11 @@ import numpy as np
 
 df = pd.read_csv('results16-19.csv')
 
-# Change the time format
-df['date'] = pd.to_datetime(df['date'])
-
 # First group data by item and zip code and then sum by item sold
 grouped = df.groupby(['item_description', 'zip_code'])
 item_sold = grouped['bottles_sold'].sum()
 print("The most popular item sold based on zip code is:\n", item_sold.sort_values(ascending=False).head(1))
 print()
-print("Items sold:\n", item_sold)
 
 # Get sales per store.
 grouped = df.groupby('store_number')
